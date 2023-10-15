@@ -8,6 +8,8 @@ __pycache__/
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
+# coveralls
+.coveralls.yml
 
 # C extensions
 *.so

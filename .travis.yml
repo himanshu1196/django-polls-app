@@ -3,19 +3,35 @@ python:
   - "3.8"
 os: linux
 
+# script:
+#   - black --check .
+#   - flake8 .
+#   - coverage run --source=polls manage.py test
+
 install:
   - pip install -r requirements.txt
+  - pip install black
+  - pip install flake8
+  - pip install coveralls
+  
+
+# before_script:
+#   - python manage.py migrate
+#   - python manage.py collectstatic --noinput
+
+# after_script:
+#   - python -m coveralls
 
 deploy:
   provider: elasticbeanstalk
   access_key_id:
-    secure: "IiQlZ+O5Jz9DJEFBluJ8h0o0zCWrfMCbIVBsSTCamYdq7OrlnjQeR/c3cwCEPYfbvPaAqfwEMTL2YsemqXc0uI2pOp4D7su2J0leMUPVj9CebApmYB7UKXadh8zSI4pD+eNX2WrXh7R9VvbIZw9BQk/IrwdZZhmY+6uYzqJ9i+gxQqtKO9j69k8XzT27nWa04QUlcYiOR/u4H/H+HOyYRm/AMqOyByJMbx8Gf+nR1dl0RfEyo4GkCuGb0CS01CWfluClvUxHkdHCl0f1NzAPYTVysXL97ExhIQGDZzqwhBDpXSVKgUtIcgCijoOY5iQ/v2FyMeQwM7sV9XepY9qUIGITf9V02LN5dpadAEMBi/v1GbwjFJrunuRAxvko3X04tJtreQULA8paLSqGKM2nfGmsAgV0RTCRo3Mf7vvoU+vNoZQCp3g/o4mBMy+D3gtXTU6W5aoAXSA2z15+o35Bu0XSZ5uRwxCEJkxYefKFirMcvp+aDiUlgkc3t9BGMeLIUtWH1LLVZ49ZMP8rQkbmahkMU13hHPB7crhNjajr3dDpsopgynI97raD3JN1TDKqkgJZNhQ5BvoXvINB+aOcFEF9J1wcBeeV48yJMeKFmuYjm0Pi8jzrIxMdrf85JlzBUZyq/9FnE+MOcat1uKRTB53qCEx7ojIgQQh3wD2UrAQ="
+    secure: $AWS_ACCESS_KEY_ID_ENCRYPTED
   secret_access_key:
-    secure: "uOu0XpBJCvRqIujilWSSKneqlhomrtHlLoVIx+Kd1bjkL5XO/1wbO0BRqc1ZsWA6ewNMaOSpHG81oXEyXFvB9t9Fz9aYv7yhO3/wbllCDbFBSygiWExv/bhPw7CJ+e0/R7Pes3+l8VEH2zawEvID1tF05/Jm2nan5gY0ilxxwIe3rCiJxtql+sZTZqcI0q2WcLaNZR8rMlGByRfcGtqj/uVgkLEcqQ3ju9IADFIbwNpHHsx24DyakOmdP2RsUmZDDGb/4b2fzIyObSVYiiPBLwpLW27oNwY48HYXjMct8SIxqKPqdwaqqK0XxHw1LwvPBejdMBUCB//IhzudrXH7gwZmIHyRX9J8Z4Bq6Nq76IpePSq+XPb6RMK6bqo4D74h3oVnAH9j7bmrY8ikHiVru6KAl6TSdE6QyUuJbYGz7IP4w5sY/VLS0Ldj7eLkUZW7gix5rwBKijlvKsnTEZ3MRMssayukiBeYbsFnb3eq9aTyfVVYiEykvwO7ge7Nm8nW9cImY+R+7ohIhN2pSXEE7scPVexPW/deMR8MrSp8/nk4v3Zz4sZp7Md/UEl8fILicPRjkCr31N5C51tEbhJ2kp0RMMfOPFUL9If2Fn+EVTPh+SxwoWPFfUmqPq5NcaY5p84t+Ddw7xuPfGvAUzJr61rIp47PlxRiZ+UWdQs4x2E="
-  region: "us-east-1"
-  app: "django-tutorial"
-  env: "django-tutorial-dev"
-  bucket_name: "elasticbeanstalk-us-east-1-108789540066"
+    secure: $AWS_SECRET_ACCESS_KEY_ENCRYPTED
+  region: $AWS_REGION
+  app: $AWS_APP_NAME
+  env: $AWS_ENV_NAME
+  bucket_name: $AWS_BUCKET_NAME
 
 after_deploy:
   - ./scripts/after_deploy_1.sh
