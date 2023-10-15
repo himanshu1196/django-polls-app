@@ -1,7 +1,13 @@
 language: python
+python:
+  - "3.8"
 os: linux
 
+install:
+  - pip install -r requirements.txt
+
 before_deploy: "echo 'ready?'"
+
 deploy:
   provider: elasticbeanstalk
   access_key_id:
@@ -12,5 +18,6 @@ deploy:
   app: "django-tutorial"
   env: "django-tutorial-dev"
   bucket_name: "elasticbeanstalk-us-east-1-108789540066"
+
 after_deploy:
   - ./scripts/after_deploy_1.sh
