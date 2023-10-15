@@ -20,6 +20,10 @@ addons:
       - postgresql-12
       - postgresql-client-12
 
+before_install:
+  - "if [ ! -z $PGVER ]; then sudo cp /etc/postgresql/{9.6,$PGVERSION}/main/pg_hba.conf; fi"
+  - "if [ ! -z $PGVER ]; then sudo service postgresql restart $PGVER; fi"
+
 install:
   - pip install -r requirements.txt
   - pip install black
