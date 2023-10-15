@@ -6,4 +6,5 @@ exclude =
     venv,
     eb-virt,
     migrations,
+    settings,
     __pycache__,
