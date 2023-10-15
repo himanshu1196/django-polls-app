@@ -3,15 +3,19 @@ python:
   - "3.8"
 os: linux
 
+services:
+  - postgresql
+
 install:
   - pip install -r requirements.txt
   - pip install black
   - pip install flake8
   - pip install coveralls
 
-# before_script:
-#   - python manage.py migrate
-#   - python manage.py collectstatic --noinput
+before_script:
+  - psql -c 'create database django-polls;' -U djangopollsuser -P pollspassword123
+  - python manage.py migrate
+  - python manage.py collectstatic --noinput
 
 
 script:
