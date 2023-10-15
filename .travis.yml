@@ -6,8 +6,6 @@ os: linux
 install:
   - pip install -r requirements.txt
 
-before_deploy: "echo 'ready?'"
-
 deploy:
   provider: elasticbeanstalk
   access_key_id:
