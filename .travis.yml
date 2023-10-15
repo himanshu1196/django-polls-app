@@ -6,8 +6,8 @@ os: linux
 env:
   global:
   - PGPORT=5432
-  - PGUSER=djangopollsuser
-  - PGPASSWORD=pollspassword123
+  # - PGUSER=djangopollsuser
+  # - PGPASSWORD=pollspassword123
 
 services:
   - postgresql
@@ -19,7 +19,7 @@ install:
   - pip install coveralls
 
 before_script:
-  - psql -c 'create database django-polls;' -U djangopollsuser
+  - psql -c 'create database django-polls;' -U postgres
   - python manage.py migrate
   - python manage.py collectstatic --noinput
 
