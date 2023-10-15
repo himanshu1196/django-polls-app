@@ -1,3 +1,6 @@
+language: python
+os: linux
+
 before_deploy: "echo 'ready?'"
 deploy:
   provider: elasticbeanstalk
