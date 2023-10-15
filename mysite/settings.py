@@ -94,7 +94,7 @@ if 'TRAVIS' in os.environ:
     DATABASES = {
         'default': {
             'ENGINE':   'django.db.backends.postgresql_psycopg2',
-            'NAME':     'django-polls',
+            'NAME':     'djangopolls',
             'USER':     'postgres',
             'PASSWORD': '',
             'HOST':     'localhost',
