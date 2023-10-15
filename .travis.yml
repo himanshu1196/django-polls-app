@@ -25,10 +25,8 @@ install:
 
 deploy:
   provider: elasticbeanstalk
-  access_key_id:
-    secure: $AWS_ACCESS_KEY_ID_ENCRYPTED
-  secret_access_key:
-    secure: $AWS_SECRET_ACCESS_KEY_ENCRYPTED
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
   region: $AWS_REGION
   app: $AWS_APP_NAME
   env: $AWS_ENV_NAME
