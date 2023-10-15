@@ -6,7 +6,7 @@ os: linux
 env:
   global:
   - PGVER=12
-  - PGPORT=5432
+  - PGPORT=5433
   # - PGUSER=djangopollsuser
   # - PGPASSWORD=pollspassword123
 
