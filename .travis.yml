@@ -8,7 +8,6 @@ env:
   - PGVER=12
   - PGPORT=5433
   - PGUSER=travis
-  # - PGPASSWORD=pollspassword123
 
 services:
   - postgresql
@@ -27,19 +26,17 @@ before_install:
   - sudo sed -i -e "/local.*peer/s/postgres/all/" -e "s/peer\|md5/trust/g" /etc/postgresql/*/main/pg_hba.conf
   - postgres --version
   - sudo pg_ctlcluster 12 main restart
-  # - "if [ ! -z $PGVER ]; then sudo cp /etc/postgresql/{9.6,$PGVER}/main/pg_hba.conf; fi"
-  # - "if [ ! -z $PGVER ]; then sudo service postgresql restart $PGVER; fi"
 
 install:
   - pip install -r requirements.txt
   - pip install black
   - pip install flake8
+  - pip install coverage
   - pip install coveralls
 
 before_script:
   - psql -c 'create database djangopolls;' -U travis
   - python manage.py migrate
-  # - python manage.py collectstatic --noinput
 
 
 script:
